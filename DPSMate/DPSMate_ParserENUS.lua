@@ -126,6 +126,21 @@ function DPSMate.Parser:PeriodicDamage(msg)
 		DB:AddSpellSchool(d.."(Periodic)",c)
 		return
 	end
+	-- Project Legacy: other players' Crusader's Inquest contains two possessives:
+	-- "Defias Highwayman suffers 14 Holy damage from Einar's Crusader's Inquest."
+	-- Match the full spell name before the generic <source>'s <ability> parser,
+	-- otherwise source becomes "Einar's Crusader" and ability becomes "Inquest".
+	for a,b,c,d,e in strgfind(msg, "(.+) suffers (%d+) (%a-) damage from (.-)'s Crusader's Inquest%.(.*)") do
+		t[1] = tnbr(b)
+		if e~="" then
+			DB:SetUnregisterVariables(tnbr(strsub(e, strfind(e, "%d+"))), "Crusader's Inquest(Periodic)", d)
+		end
+		DB:EnemyDamage(true, DPSMateEDT, d, "Crusader's Inquest(Periodic)", 1, 0, 0, 0, 0, 0, t[1], a, 0, 0)
+		DB:DamageDone(d, "Crusader's Inquest(Periodic)", 1, 0, 0, 0, 0, 0, t[1], 0, 0)
+		if self.TargetParty[a] and self.TargetParty[d] then DB:BuildFail(1, a, d, "Crusader's Inquest(Periodic)", t[1]);DB:DeathHistory(a, d, "Crusader's Inquest(Periodic)", t[1], 1, 0, 0, 0) end
+		DB:AddSpellSchool("Crusader's Inquest(Periodic)",c)
+		return
+	end
 	for a,b,c,d,e,f in strgfind(msg, "(.+) suffers (%d+) (%a-) damage from (.+)'s (.+)%.(.*)") do
 		t[1] = tnbr(b)
 		if f~="" then
@@ -135,6 +150,11 @@ function DPSMate.Parser:PeriodicDamage(msg)
 		DB:DamageDone(d, e.."(Periodic)", 1, 0, 0, 0, 0, 0, t[1], 0, 0)
 		if self.TargetParty[a] and self.TargetParty[d] then DB:BuildFail(1, a, d, e.."(Periodic)", t[1]);DB:DeathHistory(a, d, e.."(Periodic)", t[1], 1, 0, 0, 0) end
 		DB:AddSpellSchool(e.."(Periodic)",c)
+		return
+	end
+	-- Project Legacy: preserve the full nested-possessive spell name for absorbs too.
+	for a,b in strgfind(msg, "(.-)'s Crusader's Inquest is absorbed by (.+)%.") do
+		DB:Absorb("Crusader's Inquest(Periodic)", b, a)
 		return
 	end
 	for f,a,b in strgfind(msg, "(.+)'s (.+) is absorbed by (.+)%.") do
@@ -473,6 +493,17 @@ end
 -- Ikaa suffers 15 Nature damage from Ember Worg's Infected Bite. (3 resisted)
 function DPSMate.Parser:SpellPeriodicDamageTaken(msg)
 	t = {}
+	-- Project Legacy: other-player Crusader's Inquest must be split at the first
+	-- possessive, not the apostrophe inside the spell name.
+	for a,b,c,d,e in strgfind(msg, "(.+) suffers (%d+) (%a+) damage from (.-)'s Crusader's Inquest%.(.*)") do
+		t[1] = tnbr(b)
+		DB:EnemyDamage(false, DPSMateEDD, a, "Crusader's Inquest(Periodic)", 1, 0, 0, 0, 0, 0, t[1], d, 0, 0)
+		DB:DamageTaken(a, "Crusader's Inquest(Periodic)", 1, 0, 0, 0, 0, 0, t[1], d, 0, 0)
+		DB:DeathHistory(a, d, "Crusader's Inquest(Periodic)", t[1], 1, 0, 0, 0)
+		if self.FailDT["Crusader's Inquest"] then DB:BuildFail(2, d, a, "Crusader's Inquest", t[1]) end
+		DB:AddSpellSchool("Crusader's Inquest(Periodic)",c)
+		return
+	end
 	for a,b,c,d,e,f in strgfind(msg, "(.+) suffers (%d+) (%a+) damage from (.+)'s (.+)%.(.*)") do -- Potential to track resisted damage and school
 		t[1] = tnbr(b)
 		DB:EnemyDamage(false, DPSMateEDD, a, e.."(Periodic)", 1, 0, 0, 0, 0, 0, t[1], d, 0, 0)
@@ -486,6 +517,11 @@ function DPSMate.Parser:SpellPeriodicDamageTaken(msg)
 		if strfind(b, "%(") then b=strsub(b, 1, strfind(b, "%(")-2) end
 		DB:BuildBuffs("Unknown", a,b, false)
 		if self.CC[b] then DB:BuildActiveCC(a, b) end
+		return
+	end
+	-- Project Legacy: preserve the full nested-possessive spell name for incoming absorbs.
+	for a,b in strgfind(msg, "(.-)'s Crusader's Inquest is absorbed by (.+)%.") do
+		DB:Absorb("Crusader's Inquest(Periodic)", a, b)
 		return
 	end
 	for f,a,b in strgfind(msg, "(.+)'s (.+) is absorbed by (.+)%.") do
