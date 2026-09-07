@@ -13,8 +13,49 @@ This fork carries over my DPSMate work originally developed for VanillaPlus and 
 - **Rage Gained** tracking
 - **Energy Gained** tracking
 - Project Legacy-specific compatibility fixes
+- Corrected Project Legacy Paladin resource and damage attribution
 - Modular DPSMate addon structure preserved
 - Built for the **WoW 1.12.1 Vanilla client**
+
+---
+
+## Project Legacy-Specific Fixes
+
+This fork includes fixes for mechanics on Project Legacy that the original DPSMate could not correctly detect or attribute.
+
+### Bulwark of Faith - Mana Gained from Blocking
+
+Project Legacy's **Bulwark of Faith** restores mana when the Paladin blocks.
+
+The important problem is that this mana restoration is **not reported as a normal mana-gain event in the combat log**.
+
+On the VMaNGOS backend, the server directly raises the player's mana value, so DPSMate cannot simply parse a combat-log line and assign the restored mana to Bulwark of Faith.
+
+This fork adds special handling so DPSMate can recognize these server-side mana increases and correctly attribute the appropriate mana restoration to:
+
+```text
+Bulwark of Faith
+```
+<img width="741" height="351" alt="image" src="https://github.com/user-attachments/assets/c497cddb-b4b2-49b6-bd99-d7f8c651c63c" />
+
+This allows **Mana Gained** to properly show mana returned by Bulwark of Faith instead of silently missing it.
+
+### Crusader's Inquest - Periodic Damage Attribution
+
+Project Legacy's **Crusader's Inquest** periodic damage could appear as though it were coming from a separate source instead of the Paladin who caused it.
+
+This resulted in entries such as:
+
+```text
+Crusader's Inquest (Periodic)
+```
+<img width="796" height="387" alt="image" src="https://github.com/user-attachments/assets/0db3e5d7-d971-4ec1-956b-d174e3aa859d" />
+
+being separated from the Paladin's own damage totals.
+
+This fork fixes that attribution so **Crusader's Inquest (Periodic)** damage is properly credited back to the Paladin character who caused it.
+
+That means the Paladin's DPS and total damage now include the periodic Crusader's Inquest damage instead of DPSMate treating it like an unrelated damage source.
 
 ---
 
@@ -35,7 +76,7 @@ DPSMate_DataUtility
 ```
 
 ## Correct folder structure
-<img width="986" height="632" alt="image" src="https://github.com/user-attachments/assets/b7dfa298-869d-4ad0-b86e-069d22942c41" />
+<img width="986" height="632" alt="image" src="https://github.com/user-attachments/assets/5c7de8b1-a307-4054-b652-d278e62a229c" />
 
 
 Your Project Legacy addon folder should look like this:
@@ -61,6 +102,7 @@ Project Legacy\Interface\AddOns\
 ```
 
 Do **not** leave the six folders inside an extra downloaded repository folder.
+
 ---
 
 ## Step-by-step
@@ -122,6 +164,8 @@ This repository is specifically intended for **Project Legacy**.
 
 It includes changes needed for Project Legacy while retaining the DPSMate layout and functionality familiar from Vanilla 1.12.1.
 
+Some Project Legacy mechanics are implemented differently from what DPSMate normally expects from the combat log. Because of that, this fork includes server-specific handling where necessary so resource gains and damage are still credited to the correct player and ability.
+
 ---
 
 ## Notes
@@ -143,6 +187,6 @@ If something is not being tracked correctly, please include as much information 
 
 DPSMate was originally created by its original authors and contributors.
 
-This fork contains additional work and adaptations for **Project Legacy**, including resource-tracking and server-specific compatibility changes.
+This fork contains additional work and adaptations for **Project Legacy**, including resource-tracking, Paladin-specific fixes, and server-specific compatibility changes.
 
 Enjoy!
