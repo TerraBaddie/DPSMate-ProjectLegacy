@@ -35,6 +35,8 @@ DPSMate_DataUtility
 ```
 
 ## Correct folder structure
+<img width="986" height="632" alt="image" src="https://github.com/user-attachments/assets/b7dfa298-869d-4ad0-b86e-069d22942c41" />
+
 
 Your Project Legacy addon folder should look like this:
 
@@ -59,24 +61,6 @@ Project Legacy\Interface\AddOns\
 ```
 
 Do **not** leave the six folders inside an extra downloaded repository folder.
-
-## Incorrect
-
-```text
-Project Legacy
-└── Interface
-    └── AddOns
-        └── DPSMate-ProjectLegacy
-            ├── DPSMate
-            ├── DPSMate_DataDamage
-            ├── DPSMate_DataHealing
-            ├── DPSMate_DataHistory
-            ├── DPSMate_DataResources
-            └── DPSMate_DataUtility
-```
-
-The WoW client needs to see each DPSMate module as its own addon folder directly inside `AddOns`.
-
 ---
 
 ## Step-by-step
