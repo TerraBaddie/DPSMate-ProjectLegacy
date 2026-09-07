@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DPSMate_DataHealing |cFF808080(DPSMate storage)|r
+## Notes: Splits DPSMate per-character SavedVariables into smaller files. Keep enabled with DPSMate.
+## Author: DPSMate storage hardening
+## SavedVariablesPerCharacter: DPSMateEHealing, DPSMateTHealing, DPSMateHealingTaken, DPSMateEHealingTaken, DPSMateOverhealing, DPSMateOverhealingTaken, DPSMateAbsorbs
+
+DPSMate_DataHealing.lua

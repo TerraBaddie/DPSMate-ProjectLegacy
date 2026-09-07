@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DPSMate_DataUtility |cFF808080(DPSMate storage)|r
+## Notes: Splits DPSMate per-character SavedVariables into smaller files. Keep enabled with DPSMate.
+## Author: DPSMate storage hardening
+## SavedVariablesPerCharacter: DPSMateDispels, DPSMateInterrupts, DPSMateDeaths, DPSMateAurasGained, DPSMateFails, DPSMateCCBreaker
+
+DPSMate_DataUtility.lua

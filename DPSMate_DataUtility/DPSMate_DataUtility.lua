@@ -1,0 +1,2 @@
+-- SavedVariables ownership only.
+-- Runtime globals are initialized and used by the main DPSMate addon.
