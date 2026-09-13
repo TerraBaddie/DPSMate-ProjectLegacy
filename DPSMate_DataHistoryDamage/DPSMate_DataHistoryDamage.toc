@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DPSMate_DataHistoryDamage |cFF808080(DPSMate storage)|r
+## Notes: Historical Damage Done and Enemy Damage Done storage.
+## Author: DPSMate storage hardening
+## SavedVariablesPerCharacter: DPSMateHistoryDamage
+
+DPSMate_DataHistoryDamage.lua

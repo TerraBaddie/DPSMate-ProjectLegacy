@@ -5,7 +5,7 @@
 ## Author: Shino <Synced> - Kronos
 ## SavedVariables: DPSMateSettings
 ## SavedVariablesPerCharacter: DPSMateUser, DPSMateAbility, DPSMateCombatTime, DPSMateAttempts, DPSMatePlayer, DPSMateLoot
-## Dependencies: DPSMate_DataDamage, DPSMate_DataTaken, DPSMate_DataHealing, DPSMate_DataUtility, DPSMate_DataResources, DPSMate_DataHistory
+## Dependencies: DPSMate_DataDamage, DPSMate_DataTaken, DPSMate_DataHealing, DPSMate_DataUtility, DPSMate_DataResources, DPSMate_DataHistoryDamage, DPSMate_DataHistoryTaken, DPSMate_DataHistoryHealing, DPSMate_DataHistoryUtility, DPSMate_DataHistory
 ## OptionalDeps: KLHThreatMeter
 
 libs\AceLibrary\AceLibrary.lua

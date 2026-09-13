@@ -1,7 +1,8 @@
 ## Interface: 11200
 ## Title: DPSMate_DataHistory |cFF808080(DPSMate storage)|r
-## Notes: Splits DPSMate per-character SavedVariables into smaller files. Keep enabled with DPSMate.
+## Notes: Lightweight history metadata and STORAGE_SPLIT2 migration bridge. Keep enabled with DPSMate.
 ## Author: DPSMate storage hardening
-## SavedVariablesPerCharacter: DPSMateHistory
+## Dependencies: DPSMate_DataHistoryDamage, DPSMate_DataHistoryTaken, DPSMate_DataHistoryHealing, DPSMate_DataHistoryUtility
+## SavedVariablesPerCharacter: DPSMateHistoryMeta, DPSMateHistory
 
 DPSMate_DataHistory.lua
