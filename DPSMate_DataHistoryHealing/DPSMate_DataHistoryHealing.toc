@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DPSMate_DataHistoryHealing |cFF808080(DPSMate storage)|r
+## Notes: Historical healing, healing taken, overhealing, and absorbs storage.
+## Author: DPSMate storage hardening
+## SavedVariablesPerCharacter: DPSMateHistoryHealing
+
+DPSMate_DataHistoryHealing.lua

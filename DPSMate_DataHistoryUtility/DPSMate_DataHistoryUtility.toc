@@ -1,0 +1,7 @@
+## Interface: 11200
+## Title: DPSMate_DataHistoryUtility |cFF808080(DPSMate storage)|r
+## Notes: Historical utility plus ResourceGained (Mana, Energy, Rage) storage.
+## Author: DPSMate storage hardening
+## SavedVariablesPerCharacter: DPSMateHistoryUtility
+
+DPSMate_DataHistoryUtility.lua

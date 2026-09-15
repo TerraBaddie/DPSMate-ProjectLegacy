@@ -1,7 +1,7 @@
 ## Interface: 11200
-## Title: DPSMate_DataDamage |cFF808080(DPSMate storage)|r
+## Title: DPSMate_DataTaken |cFF808080(DPSMate storage)|r
 ## Notes: Splits DPSMate per-character SavedVariables into smaller files. Keep enabled with DPSMate.
 ## Author: DPSMate storage hardening
-## SavedVariablesPerCharacter: DPSMateDamageDone, DPSMateEDD
+## SavedVariablesPerCharacter: DPSMateEDT, DPSMateDamageTaken
 
-DPSMate_DataDamage.lua
+DPSMate_DataTaken.lua
