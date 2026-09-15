@@ -22,21 +22,27 @@ This fork carries over my DPSMate work originally developed for VanillaPlus and 
 # Installation
 
 > [!IMPORTANT]
-> **You must install all 6 DPSMate folders directly into your `Interface\AddOns` folder.**
+> **You must install all 11 DPSMate folders directly into your `Interface\AddOns` folder.**
 
-The six required folders are:
+The eleven required folders are:
 
 ```text
 DPSMate
 DPSMate_DataDamage
+DPSMate_DataTaken
 DPSMate_DataHealing
-DPSMate_DataHistory
-DPSMate_DataResources
 DPSMate_DataUtility
+DPSMate_DataResources
+DPSMate_DataHistory
+DPSMate_DataHistoryDamage
+DPSMate_DataHistoryTaken
+DPSMate_DataHistoryHealing
+DPSMate_DataHistoryUtility
 ```
 
 ## Correct folder structure
-<img width="986" height="632" alt="image" src="https://github.com/user-attachments/assets/5c7de8b1-a307-4054-b652-d278e62a229c" />
+<img width="986" height="645" alt="image" src="https://github.com/user-attachments/assets/0f3fb03d-1821-4bb0-b245-0565eba577ef" />
+
 
 
 Your Project Legacy addon folder should look like this:
@@ -47,21 +53,26 @@ Project Legacy
     └── AddOns
         ├── DPSMate
         ├── DPSMate_DataDamage
+        ├── DPSMate_DataTaken
         ├── DPSMate_DataHealing
-        ├── DPSMate_DataHistory
+        ├── DPSMate_DataUtility
         ├── DPSMate_DataResources
-        └── DPSMate_DataUtility
+        ├── DPSMate_DataHistory
+        ├── DPSMate_DataHistoryDamage
+        ├── DPSMate_DataHistoryTaken
+        ├── DPSMate_DataHistoryHealing
+        └── DPSMate_DataHistoryUtility
 ```
 
 ### In other words:
 
-**Copy all 6 folders into:**
+**Copy all 11 folders into:**
 
 ```text
 Project Legacy\Interface\AddOns\
 ```
 
-Do **not** leave the six folders inside an extra downloaded repository folder.
+Do **not** leave the eleven folders inside an extra downloaded repository folder.
 
 ---
 
@@ -71,7 +82,7 @@ Do **not** leave the six folders inside an extra downloaded repository folder.
 2. Choose **Download ZIP**.
 3. Extract the downloaded ZIP.
 4. Open the extracted folder.
-5. Select these **6 folders**:
+5. Select these **11 folders**:
 
    ```text
    DPSMate
@@ -80,9 +91,15 @@ Do **not** leave the six folders inside an extra downloaded repository folder.
    DPSMate_DataHistory
    DPSMate_DataResources
    DPSMate_DataUtility
+   DPSMate_DataResources
+   DPSMate_DataHistory
+   DPSMate_DataHistoryDamage
+   DPSMate_DataHistoryTaken
+   DPSMate_DataHistoryHealing
+   DPSMate_DataHistoryUtility
    ```
 
-6. Copy all six folders into:
+6. Copy all eleven folders into:
 
    ```text
    Project Legacy\Interface\AddOns\
@@ -98,25 +115,13 @@ Do **not** leave the six folders inside an extra downloaded repository folder.
 When updating to a newer version:
 
 1. Close World of Warcraft.
-2. Replace the existing six DPSMate folders inside `Interface\AddOns`.
+2. Replace the existing eleven DPSMate folders inside `Interface\AddOns`.
 3. Start the game again.
 
 Your DPSMate settings and recorded data are stored separately in WoW's `WTF` folder, so replacing the addon folders normally does not erase your SavedVariables.
 
 ---
 
-## Modules
-
-| Folder | Purpose |
-|---|---|
-| `DPSMate` | Core addon |
-| `DPSMate_DataDamage` | Damage-related modules |
-| `DPSMate_DataHealing` | Healing-related modules |
-| `DPSMate_DataHistory` | History / stored combat data modules |
-| `DPSMate_DataResources` | Mana, Rage, Energy and resource-related modules |
-| `DPSMate_DataUtility` | Utility / additional data modules |
-
----
 ## Project Legacy-Specific Fixes
 
 This fork includes fixes for mechanics on Project Legacy that the original DPSMate could not correctly detect or attribute.
